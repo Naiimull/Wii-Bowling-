@@ -2,6 +2,7 @@ const motionButton = document.getElementById("enableMotion");
 const motionStatus = document.getElementById("motionStatus");
 
 let hasStarted = false;
+let hasGlowStarted = false;
 async function handleClick() {
     if (hasStarted) {
         return;
@@ -10,6 +11,7 @@ async function handleClick() {
     // catch error block
     try { 
         if (hasGlowStarted === false) {
+            motionButton.textContent = "Ready to bowl!";
             motionButton.style.boxShadow = "0 0 20px blue";
             motionButton.animate(
             [   {boxShadow: "0 0 5px blue"},
@@ -41,20 +43,6 @@ async function handleClick() {
         }
         // Intructions that might fail go here
         hasStarted = true;
-        motionButton.textContent = "Ready to bowl!";
-        motionButton.style.boxShadow = "0 0 20px blue";
-        motionButton.animate(
-            [   {boxShadow: "0 0 5px blue"},
-                {boxShadow: "0 0 20px pink"},
-                {boxShadow: "0 0 20px blue"},
-                {boxShadow: "0 0 5px pink"},
-                {boxShadow: "0 0 5px blue"}
-            ],
-            {
-             duration: 1200,
-             iterations: Infinity
-            }
-        );
     } catch (error) {
         // Instructions for handling a failure go here
         hasStarted = false;
