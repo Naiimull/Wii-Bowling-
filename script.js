@@ -8,7 +8,23 @@ async function handleClick() {
     }
 
     // catch error block
-    try {
+    try { 
+        if (hasGlowStarted === false) {
+            motionButton.style.boxShadow = "0 0 20px blue";
+            motionButton.animate(
+            [   {boxShadow: "0 0 5px blue"},
+                {boxShadow: "0 0 20px pink"},
+                {boxShadow: "0 0 20px blue"},
+                {boxShadow: "0 0 5px pink"},
+                {boxShadow: "0 0 5px blue"}
+            ],
+            {
+             duration: 1200,
+             iterations: Infinity
+            }
+            );
+            hasGlowStarted = true;
+        }
         if (
             typeof DeviceMotionEvent === "undefined" ||
             typeof DeviceMotionEvent.requestPermission !== "function"
